@@ -1,0 +1,14 @@
+backports.tarfile==1.2.0
+importlib-metadata==8.0.0
+importlib-resources==6.4.0
+ipykernel==6.29.5
+jaraco.text==3.12.1
+matplotlib==3.8.3
+openai==1.42.0
+pinecone-client==5.0.1
+pip-chill==1.0.3
+pygame==2.5.2
+pytest==8.0.0
+python-dotenv==1.0.1
+scikit-learn==1.4.1.post1
+tomli==2.0.1

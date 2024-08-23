@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Alice Johnson",
+        "subject": "Introduction to Psychology",
+        "stars": 5,
+        "review": "Dr. Johnson is an amazing professor! Her lectures are engaging and she really cares about her students."
+      },
+      {
+        "professor": "Dr. Mark Thompson",
+        "subject": "Calculus I",
+        "stars": 3,
+        "review": "Dr. Thompson's lectures are clear, but his exams are extremely difficult. Be prepared to study hard."
+      },
+      {
+        "professor": "Dr. Emily Clark",
+        "subject": "Modern Literature",
+        "stars": 4,
+        "review": "Dr. Clark has a deep knowledge of the subject, but sometimes her lectures can be a bit dry."
+      },
+      {
+        "professor": "Dr. Robert Lee",
+        "subject": "Physics II",
+        "stars": 2,
+        "review": "Dr. Lee knows his stuff, but he isn't very good at explaining concepts. Office hours are a must."
+      },
+      {
+        "professor": "Dr. Maria Garcia",
+        "subject": "Organic Chemistry",
+        "stars": 1,
+        "review": "Dr. Garcia's course is very challenging, and she doesn't offer much help outside of class."
+      },
+      {
+        "professor": "Dr. John Miller",
+        "subject": "World History",
+        "stars": 4,
+        "review": "Dr. Miller is very passionate about history. His classes are interesting, but his grading is tough."
+      },
+      {
+        "professor": "Dr. Patricia Davis",
+        "subject": "Economics 101",
+        "stars": 5,
+        "review": "Dr. Davis makes economics easy to understand. Her exams are fair and her lectures are lively."
+      },
+      {
+        "professor": "Dr. James Wilson",
+        "subject": "Computer Science 101",
+        "stars": 3,
+        "review": "Dr. Wilson's lectures are decent, but the projects are very challenging and time-consuming."
+      },
+      {
+        "professor": "Dr. Jennifer Martinez",
+        "subject": "Spanish Literature",
+        "stars": 5,
+        "review": "Dr. Martinez is fantastic! She is very supportive and her classes are both informative and fun."
+      },
+      {
+        "professor": "Dr. Charles Brown",
+        "subject": "Sociology",
+        "stars": 2,
+        "review": "Dr. Brown's lectures are unorganized and he often goes off-topic. Not the best experience."
+      },
+      {
+        "professor": "Dr. Linda Harris",
+        "subject": "Art History",
+        "stars": 4,
+        "review": "Dr. Harris is very knowledgeable and her passion for art is contagious. However, her exams are difficult."
+      },
+      {
+        "professor": "Dr. Richard Young",
+        "subject": "Biology 101",
+        "stars": 3,
+        "review": "Dr. Young's lectures are informative, but his grading is very strict. Be prepared to work hard."
+      },
+      {
+        "professor": "Dr. Susan King",
+        "subject": "Political Science",
+        "stars": 5,
+        "review": "Dr. King is an excellent professor. She is very engaging and encourages critical thinking."
+      },
+      {
+        "professor": "Dr. Daniel Lewis",
+        "subject": "Philosophy 101",
+        "stars": 4,
+        "review": "Dr. Lewis's classes are thought-provoking, but sometimes the material can be difficult to grasp."
+      },
+      {
+        "professor": "Dr. Karen Walker",
+        "subject": "Statistics",
+        "stars": 3,
+        "review": "Dr. Walker's lectures are straightforward, but her exams are tricky. Make sure to attend her office hours."
+      },
+      {
+        "professor": "Dr. Steven Allen",
+        "subject": "Chemistry 101",
+        "stars": 2,
+        "review": "Dr. Allen's lectures are hard to follow and his exams are brutal. Not an easy class."
+      },
+      {
+        "professor": "Dr. Barbara Evans",
+        "subject": "Introduction to Sociology",
+        "stars": 5,
+        "review": "Dr. Evans is a wonderful professor! Her classes are engaging and she really cares about her students."
+      },
+      {
+        "professor": "Dr. Paul Wright",
+        "subject": "Macroeconomics",
+        "stars": 4,
+        "review": "Dr. Wright is very knowledgeable and his lectures are interesting, but his exams are challenging."
+      },
+      {
+        "professor": "Dr. Angela Green",
+        "subject": "Human Anatomy",
+        "stars": 3,
+        "review": "Dr. Green's lectures are detailed, but the pace is fast. The lab work is also quite intense."
+      },
+      {
+        "professor": "Dr. George Baker",
+        "subject": "Introduction to Anthropology",
+        "stars": 4,
+        "review": "Dr. Baker is very passionate about anthropology and it shows in his lectures. However, his grading can be tough."
+      }
+    ]
+  }
+  
