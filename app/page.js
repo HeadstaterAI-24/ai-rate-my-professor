@@ -1,7 +1,8 @@
 'use client'
-import { Box, Button, Stack, TextField } from "@mui/material";
-import { useState } from "react";
-
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import './globals.css';
+import { marked } from "marked";
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -11,7 +12,8 @@ export default function Home() {
     }
   ])
   const [message, setMessage] = useState('')
-  
+  const messageInputRef = useRef(null)
+
   const sendMessage = async () => {
     setMessages((messages)=> [
       ...messages,
@@ -31,90 +33,147 @@ export default function Home() {
       const decoder = new TextDecoder()
 
       let result = ''
-      return reader.read().then(function processText({done, value}) {
-        if (done){
+      let fullText = ''
+  
+      return reader.read().then(function processText({ done, value }) {
+        if (done) {
+          const htmlResponse = marked(fullText, { sanitize: true });
+
+          setMessages((messages) => {
+            let lastMessage = messages[messages.length - 1];
+            let otherMessages = messages.slice(0, messages.length - 1);
+            return [
+              ...otherMessages,
+              { ...lastMessage, content: lastMessage.content + htmlResponse },
+            ]
+          })
           return result
         }
-        const text = decoder.decode(value || new Uint8Array(), {stream: true})
-        setMessages((messages) => {
-          let lastMessage = messages[messages.length - 1]
-          let otherMessages = messages.slice(0, messages.length - 1)
-          return [
-            ...otherMessages,
-            {...lastMessage, content: lastMessage.content + text},
-          ]
-        })
 
-        return reader.read().then(processText)
+        const text = decoder.decode(value || new Uint8Array(), { stream: true });
+        fullText += text;
+  
+        return reader.read().then(processText);
       })
     })
-
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        sendMessage()
+      }
+    };
+
+    const inputElement = messageInputRef.current;
+    inputElement?.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      inputElement?.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [message])
+
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Stack
-        direction="column"
-        width="500px"
-        height="700px"
-        border="1px solid black"
-        p={2}
-        spacing={3}
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '16px',
+          backgroundColor: '#f5f5f5',
+          borderBottom: '1px solid #ddd',
+          position: 'fixed',
+          width: '100%',
+          top: 0,
+          left: 0,
+          zIndex: 1000,
+        }}
       >
-        <Stack 
-          direction="column"
-          spacing={2}
-          flexGrow={1}
-          overflow='auto'
-          maxHeight="100%"
+        <Typography variant="h4">Rate My Professor AI Assistant</Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexGrow: 1,
+          marginTop: '64px',
+        }}
+      >
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '16px',
+            height: 'calc(100vh - 64px)', 
+            overflow: 'hidden',
+          }}
         >
-          {
-            messages.map((message, index) => (
-              <Box
-                key={index}
-                display="flex"
-                justifyContent={
-                  message.role === "assistant" ? 'flex-start' : 'flex-end'
-                }
-              >
-                <Box
-                  bgcolor={
-                    message.role === "assistant" ? 'primary.main' : 'secondary.main'
-                  }
-                  color="white"
-                  borderRadius={16}
-                  p={3}
-                >
-                  {message.content}
-                </Box>
-
-              </Box>
-            ))
-          }
-        </Stack>
-
-        <Stack direction="row" spacing={2}>
-          <TextField
-            label="Message"
-            fullWidth
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value)
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              border: '1px solid black',
+              backgroundColor: 'white',
+              overflowY: 'auto', 
             }}
-          />
-          <Button variant="contained" onClick={sendMessage}>
-            Send
-          </Button>
-        </Stack>
+          >
+            <Stack
+              direction="column"
+              spacing={2}
+              flexGrow={1}
+              sx={{ p: 2 }}
+            >
+              {messages.map((message, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: message.role === 'assistant' ? 'flex-start' : 'flex-end',
+                    mb: 2,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      bgcolor: message.role === 'assistant' ? 'primary.main' : 'secondary.main',
+                      color: 'white',
+                      borderRadius: 2,
+                      maxWidth: '90%',
+                      overflowWrap: 'break-word',
+                      padding: '5px', 
+                      overflow: 'hidden', 
+                    }}
+                  >
+                    {message.content ? (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: message.content }} // Inject HTML content
+                        className="bubble-content"
+                      />
+                    ) : (
+                      <Typography variant="body1">Loading...</Typography> // Fallback while loading
+                    )}
+                  </Box>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
 
-      </Stack>
+          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+            <TextField
+              label="Message"
+              fullWidth
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              inputRef={messageInputRef}
+            />
+            <Button variant="contained" onClick={sendMessage}>Send</Button>
+          </Stack>
+        </Box>
+      </Box>
     </Box>
-  );
+  )
 }
