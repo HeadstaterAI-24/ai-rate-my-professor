@@ -1,10 +1,20 @@
 'use client'
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { SignedIn, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import Navbar from "./components/Navbar";
 import './globals.css';
 import { marked } from "marked";
 
 export default function Home() {
+  const router = useRouter();
+  const { isSignedIn, user } = useUser();
+
+  if (!isSignedIn){
+    router.push('/sign-in');
+  }
+
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -75,33 +85,32 @@ export default function Home() {
   }, [message])
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '16px',
-          backgroundColor: '#f5f5f5',
-          borderBottom: '1px solid #ddd',
-          position: 'fixed',
-          width: '100%',
-          top: 0,
-          left: 0,
-          zIndex: 1000,
-        }}
-      >
-        <Typography variant="h4">Rate My Professor AI Assistant</Typography>
-      </Box>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+       <Navbar />  {/* Include Navbar */}
 
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'row',
           flexGrow: 1,
-          marginTop: '64px',
         }}
       >
+        <Box
+          sx={{
+            width: '250px',
+            minWidth: '250px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            backgroundColor: '#f5f5f5',
+            borderRight: '1px solid #ddd',
+            padding: '16px',
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant="h6" sx={{ mb: 2 }}>Model: OpenAI text-embedding-3-small</Typography>
+        </Box>
+
         <Box
           sx={{
             flexGrow: 1,
