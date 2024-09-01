@@ -171,7 +171,7 @@ export default function Home() {
             </Stack>
           </Box>
 
-          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+          <Stack direction="row" spacing={2} sx={{ mt: 2, pb: 2 }}>
             <TextField
               label="Message"
               fullWidth
