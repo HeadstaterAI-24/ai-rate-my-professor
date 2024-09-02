@@ -41,11 +41,14 @@ Welcome to AI Rate My Professor! This project is designed to help students find 
 - **Authentication:** Clerk for user authentication
 - **AI Integration:** OpenAI for text analysis and summarization
 - **Development Tools:** ESLint for code quality, and various Babel plugins for efficient code compilation
+- **Pinecone:** Used for storing and retrieving professor data based on user queries.
 
 ## Purpose
 The application aims to assist students in making informed decisions about their course selections by providing clear and concise evaluations of professors. By harnessing the power of AI, the platform offers a unique perspective on professor performance that goes beyond traditional rating systems.
 
 
+## Vercel App Link
+[https://ai-rate-my-professor-azure.vercel.app/sign-in](https://ai-rate-my-professor-azure.vercel.app/sign-in)
 
 
 
